@@ -1,0 +1,48 @@
+body {
+    margin: 20px;
+}
+
+.wrap {
+    background-color: green;
+    padding-top: 50%;
+    width: 100%;
+    position: relative;
+}
+
+.wrap > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#display {
+    width: 100%;
+    height: 25%;
+    background-color: deeppink;
+    padding: 0;
+}
+
+#interaction {
+    width: 100%;
+    height: 75%;
+    background-color: mediumpurple;
+    padding: 0;
+}
+
+#digits {
+    width: 60%;
+    height: 100%;
+    background-color: aqua;
+    padding: 0;
+    float: left;
+}
+
+#functions {
+    width: 40%;
+    height: 100%;
+    background-color: yellow;
+    padding: 0;
+    float: right;
+}
