@@ -1,19 +1,6 @@
 const baseSelect = document.getElementById('base select');
 const disp = document.getElementById('disp_text');
 
-let displayLimit = 25;
-function digitPress(e) {
-    if(disp.innerText.length <= displayLimit) {
-        disp.innerText += e.target.innerHTML;
-    }
-}
-document.getElementById('zero').onclick = function() {
-    if(disp.innerText.length > 0 && disp.innerText.length <= displayLimit) {
-        disp.innerText += this.innerHTML;
-    }
-}
-document.getElementById('one').onclick = digitPress;
-
 function getNumSymbol(val) {
     if(val >= 0 && val <= 9) {
         return '' + val;
@@ -25,6 +12,67 @@ function getNumSymbol(val) {
     }
 }
 
+/* Functions */
+
+let operation = '';
+let result = '';
+let needInput = false;
+let newNum = true;
+
+function evaluate(e) {
+    /* result = EVAL */
+
+    disp.innerText = isNaN(result) ? 'Err' : result;
+
+    result = '';
+    operation = '';
+    newNum = true;
+}
+
+function operationPress(e) {
+    if(needInput) {
+        operation = e.target.innerHTML;
+    } else {
+        needInput = true;
+        newNum = true;
+
+        if(operation !== '') {evaluate(e);}
+        result = disp.innerText;
+        operation = e.target.innerHTML;
+    }
+}
+
+document.getElementById('clr').onclick = function() {
+    operation = '';
+    result = '';
+    needInput = false;
+    newNum = true;
+    disp.innerText = '0';
+};
+
+/* Digits */
+
+/* Button Press */
+function digitPress(e) {
+    if(newNum) {
+        disp.innerText = e.target.innerHTML;
+        newNum = false;
+        needInput = false;
+    } else {
+        disp.innerText += e.target.innerHTML;
+    }
+}
+document.getElementById('zero').onclick = function() {
+    if(newNum) {
+        disp.innerText = this.innerHTML;
+        needInput = false;
+    } else {
+        disp.innerText += this.innerHTML;
+    }
+};
+document.getElementById('one').onclick = digitPress;
+
+/* Adjust digit button layout based on current number base */
 let isDuodecimal = false;
 function convertToBase() {
     /* Match digit buttons to current number base */
