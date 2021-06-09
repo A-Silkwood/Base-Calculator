@@ -4,9 +4,10 @@ body {
 
 .wrap {
     background-color: green;
-    padding-top: 50%;
-    width: 100%;
+    padding-top: 45%;
+    width: 60%;
     position: relative;
+    margin: auto;
 }
 
 .wrap > div {
@@ -32,7 +33,7 @@ body {
 }
 
 #digits {
-    width: 60%;
+    width: 70%;
     height: 100%;
     background-color: aqua;
     padding: 0;
@@ -40,7 +41,7 @@ body {
 }
 
 #functions {
-    width: 40%;
+    width: 30%;
     height: 100%;
     background-color: yellow;
     padding: 0;
