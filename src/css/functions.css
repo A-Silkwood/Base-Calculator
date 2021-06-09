@@ -1,12 +1,12 @@
 #base\ select {
     width: 100%;
     height: 12%;
-    font-size: 2vw;
+    font-size: 2vmin;
 }
 
 .func {
     width: 50%;
     height: 22%;
     float: left;
-    font-size: 5vw;
+    font-size: 4vmin;
 }

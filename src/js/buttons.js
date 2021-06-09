@@ -1,6 +1,19 @@
 const baseSelect = document.getElementById('base select');
 const disp = document.getElementById('disp_text');
 
+let displayLimit = 25;
+function digitPress(e) {
+    if(disp.innerText.length <= displayLimit) {
+        disp.innerText += e.target.innerHTML;
+    }
+}
+document.getElementById('zero').onclick = function() {
+    if(disp.innerText.length > 0 && disp.innerText.length <= displayLimit) {
+        disp.innerText += this.innerHTML;
+    }
+}
+document.getElementById('one').onclick = digitPress;
+
 function getNumSymbol(val) {
     if(val >= 0 && val <= 9) {
         return '' + val;
@@ -21,7 +34,7 @@ function convertToBase() {
             let btn = document.createElement('button');
             btn.innerHTML = getNumSymbol(i);
             btn.className = 'dgt'
-            /* Add functionality for buttons here */
+            btn.onclick = digitPress;
             document.getElementById('digits').appendChild(btn);
         }
     } else if(btns.length > baseSelect.value) {
@@ -62,8 +75,6 @@ function convertToBase() {
             }
         }
     }
-
-    disp.innerHTML = baseSelect.value;
 }
 
 window.addEventListener('load', convertToBase);
