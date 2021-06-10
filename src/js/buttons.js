@@ -24,6 +24,7 @@ function getNumValue(sym) {
 }
 function convertTo(num, cBase, nBase) {
     /* Convert to decimal */
+    if(cBase === 12) {num = modFromDuodecimal(num)}
     let dNum = cBase === 10 ? Number(num) : convertToDecimal(num, cBase);
 
     /* Convert from decimal to new base */
@@ -34,7 +35,7 @@ function convertTo(num, cBase, nBase) {
         dNum = Math.floor(dNum / nBase);
     }
 
-    return result === '' ? '0' : result;
+    return result === '' ? '0' : nBase === 12 ? modToDuodecimal(result) : result;
 }
 function convertToDecimal(num, base) {
     let result = 0;
@@ -45,10 +46,10 @@ function convertToDecimal(num, base) {
     return result;
 }
 function modToDuodecimal(num) {
-
+    return num.replaceAll('A', 'X').replaceAll('B', 'E');
 }
 function modFromDuodecimal(num) {
-
+    return num.replaceAll('X', 'A').replaceAll('E', 'B');
 }
 
 /* Functions */
@@ -61,9 +62,10 @@ let newNum = true;
 /* Onclick events */
 function evaluate() {
     /* result = EVAL */
+
     result += operation + disp.innerText;
 
-    disp.innerText = /*isNaN(result) ? 'Err' : */result;
+    disp.innerText = result;
 
     result = '';
     operation = '';
@@ -129,12 +131,13 @@ document.getElementById('one').onclick = digitPress;
 /* Base conversion */
 
 /* Convert display and adjust digit button layout */
-let base = baseSelect.value;
+let base = Number(baseSelect.value);
 let isDuodecimal = false;
 function convertToBase() {
     /* Display */
-    disp.innerText = convertTo(disp.innerText, base, baseSelect.value);
-    base = baseSelect.value;
+    disp.innerText = convertTo(disp.innerText, base, Number(baseSelect.value));
+    base = Number(baseSelect.value);
+
 
     /* Buttons */
 
@@ -171,7 +174,7 @@ function convertToBase() {
         }
     }
 
-    /* Special duodecimal cases *//*
+    /* Special duodecimal cases */
     if(isDuodecimal !== (+base === 12)) {
         isDuodecimal = +base === 12;
         if(isDuodecimal) {
@@ -185,7 +188,7 @@ function convertToBase() {
                 btns[10].innerHTML = getNumSymbol(10);
             }
         }
-    } /**/
+    }
 }
 
 /* Add function conversion method */
