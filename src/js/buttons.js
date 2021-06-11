@@ -71,6 +71,7 @@ let newNum = true;
 
 /* Onclick events */
 function evaluate() {
+    if(operation === '' || needInput) {return;}
     /* result = EVAL */
     let num = convertToDecimal(disp.innerText, base);
     console.log(result + operation + num);
@@ -85,11 +86,7 @@ function evaluate() {
             result *= num;
             break;
         case '÷':
-            if(num === 0) {
-                result /= num;
-            } else {
-                result = undefined;
-            }
+            result = num !== 0 ? Math.floor(result / num) : 'inf';
             break;
         case '^':
             result = Math.pow(result, num);
@@ -102,7 +99,8 @@ function evaluate() {
             break;
     }
     console.log('\t= ' + result);
-    disp.innerText = result === undefined ? 'err' : convertTo('' + result, 10, base);
+    if(result !== 'inf') {result = convertTo('' + result, 10, base);}
+    disp.innerText = result === undefined ? 'err' : result
 
     result = undefined;
     operation = '';
@@ -111,13 +109,11 @@ function evaluate() {
 function operationPress(e) {
     if(needInput) {
         operation = e.target.innerHTML;
-    } else if(disp.innerText !== 'err') {
+    } else if(disp.innerText !== 'err' && disp.innerText !== 'inf') {
         needInput = true;
         newNum = true;
 
-        if (operation !== '') {
-            evaluate(e);
-        }
+        if (operation !== '') {evaluate(e);}
         result = convertToDecimal(disp.innerText, base);
         operation = e.target.innerHTML;
     }
