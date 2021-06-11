@@ -36,7 +36,7 @@ function convertTo(num, cBase, nBase) {
         dNum = Math.floor(dNum / nBase);
     }
     if(result !== '' && isNeg) {result = '-' + result;}
-    if(nBase === 12) {modToDuodecimal(result);}
+    if(nBase === 12) {result = modToDuodecimal(result);}
     return result === '' ? '0' : result;
 }
 function convertToDecimal(num, base) {
@@ -100,7 +100,7 @@ function evaluate() {
     }
     console.log('\t= ' + result);
     if(result !== 'inf') {result = convertTo('' + result, 10, base);}
-    disp.innerText = result === undefined ? 'err' : result
+    disp.innerText = result === undefined ? 'err' : result;
 
     result = undefined;
     operation = '';
