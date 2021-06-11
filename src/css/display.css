@@ -1,5 +1,10 @@
+#display {
+    overflow-x: scroll;
+}
+
 #disp_text {
     display: table-cell;
     text-align: left;
     vertical-align: middle;
+    white-space: nowrap;
 }
