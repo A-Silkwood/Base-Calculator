@@ -1,12 +1,16 @@
+.dgt {
+    float: left;
+}
+
 #base\ select {
     width: 100%;
     height: 12%;
-    font-size: 2vmin;
+    font-size: 2vw;
 }
 
 .func {
     width: 50%;
     height: 22%;
     float: left;
-    font-size: 4vmin;
+    font-size: 5vw;
 }

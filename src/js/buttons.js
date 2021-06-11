@@ -78,9 +78,11 @@ function evaluate() {
     switch(operation) {
         case '+':
             result += num;
+            result = result === Infinity ? 'inf' : result;
             break;
         case '-':
             result -= num;
+            result = result === Infinity ? 'inf' : result;
             break;
         case '*':
             result *= num;
@@ -201,11 +203,13 @@ function convertToBase() {
         let rows = Math.ceil(base / cols);
         let w = (100 / cols) + '%';
         let h = (100 / rows) + '%';
+        let fs = (24 / rows) + 'vw';
 
         btns = document.getElementsByClassName('dgt');
         for (let btn of btns) {
             btn.style.width = w;
             btn.style.height = h;
+            btn.style.fontSize = fs;
         }
     }
 
