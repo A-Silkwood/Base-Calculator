@@ -1,10 +1,16 @@
-#display {
+#disp_cont {
     overflow-x: scroll;
+}
+
+#display {
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 95%;
+    height: 95%;
     display: table;
 }
 
 #disp_text {
-    margin-left: 25%;
     font-size: 5vw;
     text-align: left;
     white-space: nowrap;

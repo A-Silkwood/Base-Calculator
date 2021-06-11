@@ -1,9 +1,9 @@
 body {
     margin: 20px;
+    background-color: #594f3e;
 }
 
 .wrap {
-    background-color: green;
     padding-top: 45%;
     width: 60%;
     position: relative;
@@ -11,6 +11,7 @@ body {
 }
 
 .wrap > div {
+    border: 4px solid #362a15;
     position: absolute;
     top: 0;
     left: 0;
@@ -18,24 +19,23 @@ body {
     bottom: 0;
 }
 
-#display {
+#disp_cont {
     width: 100%;
     height: 25%;
-    background-color: deeppink;
+    background-color: #e3b86d;
     padding: 0;
 }
 
 #interaction {
     width: 100%;
     height: 75%;
-    background-color: mediumpurple;
     padding: 0;
 }
 
 #digits {
     width: 70%;
     height: 100%;
-    background-color: aqua;
+    background-color: #d1c6b2;
     padding: 0;
     float: left;
 }
@@ -43,7 +43,7 @@ body {
 #functions {
     width: 30%;
     height: 100%;
-    background-color: yellow;
+    background-color: #cab289;
     padding: 0;
     float: right;
 }

@@ -78,20 +78,22 @@ function evaluate() {
     switch(operation) {
         case '+':
             result += num;
-            result = result === Infinity ? 'inf' : result;
             break;
         case '-':
             result -= num;
-            result = result === Infinity ? 'inf' : result;
             break;
         case '*':
             result *= num;
             break;
         case '÷':
-            result = num !== 0 ? Math.floor(result / num) : 'inf';
+            result = num !== 0 ? Math.floor(result / num) : Infinity;
             break;
         case '^':
-            result = Math.pow(result, num);
+            let total = result;
+            for(let i = 0; i < num && total !== Infinity; i++) {
+                total *= result;
+            }
+            result = total;
             break;
         case '%':
             result %= num;
@@ -101,8 +103,7 @@ function evaluate() {
             break;
     }
     console.log('\t= ' + result);
-    if(result !== 'inf') {result = convertTo('' + result, 10, base);}
-    disp.innerText = result === undefined ? 'err' : result;
+    disp.innerText = result === undefined ? 'err' : result === Infinity ? 'inf' : convertTo(result, 10, base);
 
     result = undefined;
     operation = '';
