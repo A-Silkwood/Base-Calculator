@@ -24,6 +24,10 @@ function getNumValue(sym) {
 }
 function convertTo(num, cBase, nBase) {
     /* Convert to decimal */
+    let isNeg = num[0] === '-';
+    disp.innerText = num;
+    if(isNeg) {num.substr(1, num.length - 1);}
+
     if(cBase === 12) {num = modFromDuodecimal(num)}
     let dNum = cBase === 10 ? Number(num) : convertToDecimal(num, cBase);
 
@@ -35,15 +39,18 @@ function convertTo(num, cBase, nBase) {
         dNum = Math.floor(dNum / nBase);
     }
 
+    if(result !== '' && isNeg) {result = '-' + result;}
     return result === '' ? '0' : nBase === 12 ? modToDuodecimal(result) : result;
 }
 function convertToDecimal(num, base) {
+    let isNeg = num < 0;
+    if(isNeg) {Math.abs(num);}
     let result = 0;
     for(let i = num.length - 1; i >= 0; i--) {
         let val = getNumValue(num[i]);
         result += val * Math.pow(base, -(i - (num.length - 1)));
     }
-    return result;
+    return isNeg ? -result : result;
 }
 function modToDuodecimal(num) {
     return num.replaceAll('A', 'X').replaceAll('B', 'E');
@@ -59,13 +66,36 @@ let result = '';
 let needInput = false;
 let newNum = true;
 
+/* Operations */
+
 /* Onclick events */
 function evaluate() {
     /* result = EVAL */
-
-    result += operation + disp.innerText;
-
-    disp.innerText = result;
+    let num = convertToDecimal(disp.innerText, base);
+    switch(operation) {
+        case '+':
+            result += num;
+            break;
+        case '-':
+            result -= num;
+            break;
+        case '*':
+            result *= num;
+            break;
+        case '÷':
+            result /= num;
+            break;
+        case '^':
+            result = Math.pow(result, num);
+            break;
+        case '%':
+            result %= num;
+            break;
+        default:
+            result = undefined;
+            break;
+    }
+    disp.innerText = result === undefined ? '' : convertTo('' + result, 10, base);
 
     result = '';
     operation = '';
@@ -79,7 +109,7 @@ function operationPress(e) {
         newNum = true;
 
         if(operation !== '') {evaluate(e);}
-        result = disp.innerText;
+        result = convertToDecimal(disp.innerText, base);
         operation = e.target.innerHTML;
     }
 }
