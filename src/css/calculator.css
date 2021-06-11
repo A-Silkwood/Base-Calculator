@@ -24,6 +24,8 @@ body {
     height: 25%;
     background-color: #e3b86d;
     padding: 0;
+    border: 0 solid #362a15;
+    border-bottom-width: 2px;
 }
 
 #interaction {
@@ -35,7 +37,7 @@ body {
 #digits {
     width: 70%;
     height: 100%;
-    background-color: #d1c6b2;
+    background-color: #362a15;
     padding: 0;
     float: left;
 }
