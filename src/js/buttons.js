@@ -113,10 +113,9 @@ function operationPress(e) {
     if(needInput) {
         operation = e.target.innerHTML;
     } else if(disp.innerText !== 'err' && disp.innerText !== 'inf') {
+        if (operation !== '') {evaluate(e);}
         needInput = true;
         newNum = true;
-
-        if (operation !== '') {evaluate(e);}
         result = convertToDecimal(disp.innerText, base);
         operation = e.target.innerHTML;
     }
