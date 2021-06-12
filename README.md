@@ -1,3 +1,3 @@
 # Base Calculator
 A calculator that converts a number's base and performs operations in that base (i.e. Binary, Hexadecimal, etc). 
-![Screenshot from 2021-06-11 13-52-01](https://user-images.githubusercontent.com/56371565/121747434-44b05000-cabc-11eb-9f4f-1fce17327eda.png)
+![Screenshot from 2021-06-12 09-29-48](https://user-images.githubusercontent.com/56371565/121782928-e38e8800-cb60-11eb-8849-1ffbe01f1474.png)
